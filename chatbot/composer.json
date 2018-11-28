@@ -1,0 +1,8 @@
+{
+    "require": {
+        "botman/botman": "^2.4",
+        "botman/driver-web": "^1.5",
+        "eristemena/dialogflow-fulfillment-webhook-php": "dev-master",
+        "eristemena/botman-driver-dialogflow": "^0.0.2"
+    }
+}

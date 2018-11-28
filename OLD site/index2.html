@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .responsive {
+            width: 50%;
+            height: auto;
+        }
+        .message {
+            background: #919292;
+            float: right;
+            border-radius: 25px;
+            border: 2px ;
+            padding: 10px;
+            width: 200px;
+            height: 40px;
+        }
+        
+        .response {
+                background: #ebebeb;
+            height: 30px;
+            line-height: 30px;
+            margin: auto;
+                    border-radius: 25px;
+            border: 2px ;
+            padding: 10px;
+            width: 200px;
+            height: 40px;
+        }
+            
+    </style>
+    <script>
+        $( document ).ready(function() {
+            function submitform() {
+                    $("#conversation").html($("#conversation").html() + "<div style='clear:both;width:100%;'>&nbsp;</div><div class='message'>" + $("#message").val() + "</div>");
+                    $.ajax({
+                            url: 'chat.php',
+                            type: 'POST',
+                            data: { message: $("#message").val(), driver : "web", userId : "1234"} ,
+                            success: function (response) {
+                                    $("#conversation").html($("#conversation").html() + "<div style='clear:both;width:100%;'>&nbsp;</div><div class='response'>" + response.messages[0].text + "</div>");
+                                    $("#message").val('');
+
+                                    $('#conversation').scrollTop($('#conversation')[0].scrollHeight);
+                            },
+                            error: function () {
+                                    alert("error");
+                            }
+                    });
+            }
+
+            $( "#submit" ).click(function() {
+                    submitform();
+            });
+
+            $('#chatbox').keypress(function(e) {
+                    if (e.which == 13) {
+                            e.preventDefault();
+                            submitform();
+                    }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="width:50%; margin:auto; text-align:center;">
+        <img src="./images/botman.png" class="responsive" >
+    <div id="conversation" style="height: 500px; overflow-y:scroll;"></div>
+    <div style='clear:both;width:100%;'>&nbsp;</div>
+        <form name="chatbox" id="chatbox">
+            Your message:
+            <input type="text" name="message" value="" id="message" placeholder="Your Name" />
+            <input type="button" value="Submit" id="submit" />
+        </form>
+    </div>
+</body>
+</html>

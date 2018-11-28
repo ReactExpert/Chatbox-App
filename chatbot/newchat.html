@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+    <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+    <link rel="canonical" href="https://codepen.io/clemer/pen/xLqaKm?limit=all&page=4&q=uikit" />
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/css/uikit.min.css'>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src='https://production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
+    <script src='https://production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
+    <script src='https://production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>App</title>
+
+    <style class="cp-pen-styles">
+        .responsive {
+            width: 50%;
+            height: auto;
+        }
+        .message {
+            float: right;
+            padding: 10px;
+            border-top-right-radius: 20px !important;
+            border-top-left-radius: 20px !important;
+            border-bottom-left-radius: 20px !important;
+            background-color: #5f6eee;
+            color: #fff;
+            margin-right: 45px;
+            height: auto;
+        }
+        
+        .response {
+            background: #fff;
+            color: #666;
+            border-top-right-radius: 20px !important;
+            border-top-left-radius: 20px !important;
+            border-bottom-right-radius: 20px !important;
+            padding: 10px 10px;
+            font-size: 13px;
+            box-shadow: 0 14px 25px rgba(0,0,0,.16);
+            height: auto;
+        }
+        .uk-card-small.uk-card-body {
+            padding: 10px 10px;
+            font-size: 13px;
+        }
+        
+        .uk-width-large {
+            width: 410px !important;
+        }
+
+        .uk-section {
+            padding-bottom: 0px !important;
+            padding-top: 0px !important;
+        }
+        .uk-border-remove {
+            border: 0 none;
+            font-size: 13px;
+        }
+        
+        textarea {
+            background: none !important;
+            resize: none;
+        }
+        
+        @keyframes dot-anim {
+            100% {
+            transform: translate(0, 0);
+            }
+            50% {
+            transform: translate(0, -6px);
+            }
+            0% {
+            transform: translate(0, 0);
+            }
+        }
+        .etc i {
+            width: 6px;
+            height: 6px;
+            background: #222;
+            border-radius: 100%;
+            display: inline-block;
+            animation: dot-anim 1s infinite linear;
+            transform: translate(0, 0);
+        }
+        
+        .etc {
+            display: block;
+            position: relative;
+        }
+        .etc i + i {
+            margin-left: 3px;
+        }
+        .etc i:nth-child(1) {
+            animation-delay: .5s;
+        }
+        .etc i:nth-child(2) {
+            animation-delay: .4s;
+        }
+        .etc i:nth-child(3) {
+            animation-delay: .3s;
+        }
+        
+        .uk-card {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .uk-margin-large-bottom {
+            padding-bottom: 120px !important;
+            }  
+        
+            .uk-card-default .uk-card-footer {
+            border-top: 1px solid #e2dada;
+            background-color: #e8e5e561;
+        }
+        
+        .uk-card .uk-card-body .uk-box-shadow-large  .uk-card-small .uk-card-primary .uk-border-rounded .data {
+            
+            border-top-right-radius: 20px !important;
+            border-top-left-radius: 20px !important;
+            background-color: #5f6eee;
+        }
+        .uk-card-small.uk-card-body {
+            border-top-right-radius: 25px !important;
+            border-top-left-radius: 25px !important;
+            border-bottom-right-radius: 25px !important;
+        }
+
+        .spinner {
+        width: 50px;
+        height: 20px;
+        text-align: center;
+        font-size: 10px;
+        }
+
+        .spinner > div {
+        background-color: #9ca1ac;
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+        
+        -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        }
+
+        .spinner .rect2 {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+        }
+
+        .spinner .rect3 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+        }
+
+        .spinner .rect4 {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+        }
+
+        .spinner .rect5 {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+        }
+
+        @-webkit-keyframes sk-stretchdelay {
+        0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+        20% { -webkit-transform: scaleY(1.0) }
+        }
+
+        @keyframes sk-stretchdelay {
+        0%, 40%, 100% { 
+            transform: scaleY(0.4);
+            -webkit-transform: scaleY(0.4);
+        }  20% { 
+            transform: scaleY(1.0);
+            -webkit-transform: scaleY(1.0);
+        }
+        }
+        
+    </style>
+        <script>
+            $( document ).ready(function() {           
+                function submitform() {
+                    $("#conversation").html($("#conversation").html() + "<div style='clear:both;width:100%;'>&nbsp;</div><div class='message'>" + $("#message").val() + "</div>");
+                    $.ajax({
+                            url: 'chat.php',
+                            type: 'POST',
+                            data: { message: $("#message").val(), driver : "web", userId : "1234"} ,
+                            success: function (response) {
+                                    $("#conversation").html($("#conversation").html() + "<div style='clear:both;width:100%;'>&nbsp;</div><div class='response'>" + response.messages[0].text + "</div>");
+                                    $("#message").val('');
+
+                                    $('#conversation').scrollTop($('#conversation')[0].scrollHeight);
+                            },
+                            error: function () {
+                                    alert("error");
+                            }
+                    });
+                }
+    
+                $( "#submit" ).click(function() {
+                        submitform();
+                });
+    
+                $('#chatbox').keypress(function(e) {
+                        if (e.which == 13) {
+                                e.preventDefault();
+                                submitform();
+                        }
+                });
+            });
+        </script>
+</head>
+<body>
+    <div class="uk-section">
+        <div class="uk-container uk-width-large">
+            <div class="uk-card uk-card-default uk-border-rounded uk-margin-large-top">
+                <div id="conversation" class="uk-card-body uk-padding-small uk-margin-large-bottom">
+                    <!-- Current date show -->
+                    <div class="guest uk-grid-small uk-flex-bottom uk-flex-center" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-card-body uk-card-small uk-card-default uk-border-rounded" 
+                            style="border-top-left-radius: 25px; 
+                                border-top-right-radius: 25px; 
+                                border-bottom-right-radius: 25px; 
+                                border-bottom-left-radius: 25px; 
+                                padding-right: 20px;
+                                padding-left: 20px; 
+                                background-color:#d3d8ff ; 
+                                color: #5f6eee;">
+                            <p class="uk-margin-remove"><b>Today</b></p>
+                            </div>
+                        </div>
+                    </div>
+            
+            <!--1st msg-->
+                    <div class="guest uk-grid-small uk-flex-bottom uk-flex-left" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="32" height="32" src="./images/avatar.png">
+                        </div>
+                        <div class="uk-width-auto">
+                            <div class="uk-card uk-card-body uk-box-shadow-large uk-card-small uk-card-default uk-border-rounded">
+                            <p class="uk-margin-remove">👋<b> Hello, my name is FITSY.</b></p>
+                            </div>
+                        </div>
+                    </div>
+            
+            <!--2st msg-->
+                    <div class="guest uk-grid-small uk-flex-bottom uk-flex-left" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="32" height="32">
+                        </div>
+                        <div class="uk-width-auto">
+                            <div class="uk-card uk-card-body uk-box-shadow-large uk-card-small uk-card-default uk-border-rounded">
+                            <p class="uk-margin-remove"><b> Should we proceed?</b></p>
+                            </div>
+                        </div>
+                    </div>
+            
+           
+                    <div class="me uk-grid-small uk-flex-bottom uk-flex-right uk-text-right" uk-grid>
+                        <div class="uk-width-auto">
+                            <div style="background-color: #5f6eee; border-bottom-left-radius: 25px !important; border-bottom-right-radius: 5px !important; " class="uk-card uk-card-body uk-box-shadow-large  uk-card-small uk-card-primary uk-border-rounded data">
+                                <p class="uk-margin-remove" ><img class="uk-border-circle" width="22.5" height="22.5" src="./images/avatar2.png"><b>&nbsp I'm a Man</b></p>
+                            <!--  <p class="uk-margin-remove">What's up?</p> -->
+                            </div>
+                        </div>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="32" height="32" >
+                        </div>
+                    </div>
+                    
+                    <div class="guest uk-grid-small uk-flex-bottom uk-flex-left" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="32" height="32" src="./images/avatar.png">
+                        </div>
+                        <div class="uk-width-auto">
+                            <div class="uk-card uk-card-body uk-box-shadow-large uk-card-small uk-card-default uk-border-rounded">
+                            <p class="uk-margin-remove"><b> Fine,</b> Nice to meet you.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- send massage icon svg -->
+                    <div class="guest uk-grid-small uk-flex-bottom uk-flex-left" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="32" height="32" >
+                        </div>
+                        <div class="uk-width-auto">
+                            <div class="uk-card uk-card-body uk-box-shadow-large uk-card-small uk-card-default uk-border-rounded">
+                                <div class="spinner">
+                                    <div class="rect1"></div>
+                                    <div class="rect2"></div>
+                                    <div class="rect3"></div>
+                                    <div class="rect4"></div>
+                                    <div class="rect5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                    <form name="chatbox" id="chatbox">
+                        <div class="uk-card-footer uk-padding-remove">
+                            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                <div class="uk-width-auto">
+                                    <a href="#" class="uk-icon-link uk-margin-small-left" uk-icon="icon: plus"></a>
+                                </div>
+                            <div class="uk-width-expand">
+                                <div class="uk-padding-small uk-padding-remove-horizontal"><b>
+                                    <textarea class="uk-textarea uk-padding-remove uk-border-remove" type="text" name="message" value="" id="message" rows="1" placeholder="Press here to talk to FLTSY."></textarea></b>
+                                </div>
+                            </div>
+                            <div class="uk-width-auto">
+                                <ul class="uk-iconnav uk-margin-small-right">
+                                    <!-- <li>
+                                        <a href="#" uk-icon="icon: image"></a>
+                                    </li> -->
+                                    <li>
+                                        <a href="#" uk-icon="icon: ">
+                                            <img class="uk-border-circle" value="Submit" id="submit" width="20" height="20" src="./images/send.png" style="border-radius: 0% !important;">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src='https://production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/js/uikit.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/js/uikit-icons.min.js'></script>
+    <script >$('.uk-button').on('click', function (){
+    $('.uk-section').toggleClass('uk-dark uk-light');
+    
+    $('.uk-container > .uk-card').toggleClass('uk-card-default uk-card-secondary');
+    
+    $('html').toggleClass('uk-background-muted uk-background-secondary');
+    });
+    
+    //# sourceURL=pen.js
+    </script>
+</body>
+</html>
